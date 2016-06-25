@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AMP People Search</title>
+    <!-- external libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- custom js -->
+    <script src="/js/index.js"></script>
+</head>
+<body ng-app="peoplesearch">
+
+<h1>People Search</h1>
+
+<div ng-controller="peopleSearchCtrl">
+    <input type="text" id="searchBox" ng-model="searchString" ng-change="textChanged()" placeholder="Enter your search term" /><br>
+    <div class="userContainer">
+        <div class="user" ng-repeat="user in users">
+            <img ng-src="/images/{{user.name}}.png"><br>{{user.name}}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+body {
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif; letter-spacing: 1px;
+    padding: 1em; color: rgb(0, 98, 195); text-align: center;
+}
+
+input {
+    padding: 0.5em; font-size: 1em; width: 20em; letter-spacing: 2px; margin:1em auto 2em auto;
+}
+.userContainer {
+    display: inline-flex; justify-content: space-around;  flex-wrap: wrap;
+}
+.user {
+    padding: 1em;
+}
