@@ -18,7 +18,7 @@
     <input type="text" id="searchBox" ng-model="searchString" ng-change="textChanged()" placeholder="Enter your search term" /><br>
     <div class="userContainer">
         <div class="user" ng-repeat="user in users">
-            <img ng-src="/images/{{user.name}}.png"><br>{{user.name}}
+            <img ng-src="/images/{{user.name|lowercase}}.png"><br>{{user.name}}
         </div>
     </div>
 </div>
