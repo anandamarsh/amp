@@ -9,6 +9,7 @@ var app = express();
 
 var ObjectID = require('mongodb').ObjectID;
 var mongoose = require('mongoose');
+//mongoose.connect("mongodb://localhost/peoplesearch");
 mongoose.connect("mongodb://peoplesearch:peoplesearch@ds023624.mlab.com:23624/peoplesearch");
 
 // view engine setup

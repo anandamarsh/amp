@@ -1,0 +1,51 @@
+<html>
+<head>
+    <!-- Jasmine References -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+    <!-- Angular and Angular Mock references -->
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+    <!-- The code to test -->
+    <script type="text/javascript" src="/js/index.js"></script>
+</head>
+<body></body>
+<script type="text/javascript">
+
+    describe('search people app tests', function () {
+
+        var controller, httpBackend, scope;
+
+        // setup before each test run
+        beforeEach(module('peoplesearchApp'));
+        beforeEach(inject(function (_$controller_, _$httpBackend_, _$rootScope_) {
+            scope = _$rootScope_.$new();
+            httpBackend = _$httpBackend_;
+            controller = _$controller_('peopleSearchCtrl', {$scope: scope});
+        }));
+
+        describe('only the users that have their names starting from the search query should be visible', function () {
+
+            it('should show all users for a blank query', function () {
+                httpBackend.when('GET', '/findusers?q=').respond(['Sean','Yaw','Lucy','Eric','Rory','Heyley']);
+                scope.textChanged();
+                httpBackend.flush();
+                expect(scope.users).toEqual(['Sean','Yaw','Lucy','Eric','Rory','Heyley']);
+            });
+
+            it('should show only Rory for query=r', function () {
+                httpBackend.when('GET', '/findusers?q=').respond(['Sean','Yaw','Lucy','Eric','Rory','Heyley']);
+                scope.searchString = 'r';
+                httpBackend.when('GET', '/findusers?q=r').respond(['Rory']);
+                scope.textChanged();
+                httpBackend.flush();
+                expect(scope.users).toEqual(['Rory']);
+            });
+        });
+
+    })
+
+</script>
+</html>
